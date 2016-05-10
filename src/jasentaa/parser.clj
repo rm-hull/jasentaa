@@ -1,7 +1,6 @@
 (ns jasentaa.parser
   (:require
-    [jasentaa.monad :as m :refer [>>=]]
-    [jasentaa.position :refer [emit]]))
+    [jasentaa.monad :as m :refer [>>=]]))
 
 (defn parse-all
   "Attempts to fully consume the input using the supplied parser.
@@ -9,7 +8,7 @@
   [parser input]
   (->>
     parser
-    (m/bind (emit input))
+    (m/bind input)
     (filter #(= "" (second %)))
     ffirst))
 
