@@ -1,4 +1,4 @@
-# [Jäsentää](https://translate.google.co.uk/#fi/en/j%C3%A4sent%C3%A4%C3%A4)
+# [Jäsentää](https://translate.google.co.uk/#fi/en/j%C3%A4sent%C3%A4%C3%A4) [![Build Status](https://travis-ci.org/rm-hull/jasentaa.svg?branch=master)](http://travis-ci.org/rm-hull/jasentaa) [![Coverage Status](https://coveralls.io/repos/rm-hull/jasentaa/badge.svg?branch=master)](https://coveralls.io/r/rm-hull/jasentaa?branch=master) [![Dependencies Status](https://jarkeeper.com/rm-hull/jasentaa/status.svg)](https://jarkeeper.com/rm-hull/jasentaa) [![Downloads](https://jarkeeper.com/rm-hull/jasentaa/downloads.svg)](https://jarkeeper.com/rm-hull/jasentaa) [![Clojars Project](https://img.shields.io/clojars/v/rm-hull/jasentaa.svg)](https://clojars.org/rm-hull/jasentaa)
 
 A parser-combinator library in Clojure.
 
