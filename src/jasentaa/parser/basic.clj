@@ -5,7 +5,7 @@
 (defn any [input]
   (if (empty? input)
     (m/failure input)
-    (list [(first input) (apply str (rest input))])))
+    (list [(first input) (subs input 1)])))
 
 (defn sat
   "Satisfies a given predicate"
