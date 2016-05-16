@@ -2,6 +2,41 @@
 
 A parser-combinator library in Clojure.
 
+### Pre-requisites
+
+You will need [Leiningen](https://github.com/technomancy/leiningen) 2.6.1 or above installed.
+
+### Building
+
+To build and install the library locally, run:
+
+    $ cd jasentaa
+    $ lein test
+    $ lein install
+
+### Including in your project
+
+There is a version hosted at [Clojars](https://clojars.org/rm-hull/infix).
+For leiningen include a dependency:
+
+```clojure
+[rm-hull/jasentaa "0.1.0"]
+```
+
+For maven-based projects, add the following to your `pom.xml`:
+
+```xml
+<dependency>
+  <groupId>rm-hull</groupId>
+  <artifactId>jasentaa</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
+
+## Basic Usage
+
+> TODO
+
 ## Attribution
 
 Substantial portions based on:
