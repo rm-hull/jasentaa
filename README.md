@@ -58,7 +58,7 @@ Expressing this in BNF, we have the following rules:
 
 * _**searchAnd** ::= searchTerm [ AND searchTerm ]..._
 
-* _**searchTerm** ::= [NOT] ( singleWord | quotedString | '(' searchExpr ')' )_
+* _**searchTerm** ::= \[NOT\] ( singleWord | quotedString | '(' searchExpr ')' )_
 
 Following the _PyParsing_ implementation, we can build up the
 parsers in Clojure starting with:
@@ -176,8 +176,8 @@ This example is encapsulated as a [test](https://github.com/rm-hull/jasentaa/blo
 
 * [Warren's Abstract Machine](https://github.com/rm-hull/wam) is an
   _"in-progress"_ Prolog implementation which uses parser combinators to read
-  Proglog programs (questions, facts and rules) before compiling into
-  WAM instructions.
+  Prolog programs (questions, facts and rules) before compiling into
+  virtual machine instructions.
 
 * [Infix](https://github.com/rm-hull/infix) is a Clojure library that allows
   infix math expressions to be read from a string, and 'compiled' into a
