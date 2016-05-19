@@ -5,7 +5,7 @@
 (defn any [input]
   (if (empty? input)
     (m/failure input)
-    (list [(first input) (subs input 1)])))
+    (list [(first input) (rest input)])))
 
 (defn sat
   "A basic combinator that takes a predicate, and yields a parser that
@@ -13,7 +13,7 @@
   otherwise."
   [pred]
   (>>= any (fn [v]
-             (if (pred v)
+	     (if (pred (get v 0))
                (m/return v)
                m/failure))))
 
