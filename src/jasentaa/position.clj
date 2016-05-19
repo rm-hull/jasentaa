@@ -15,3 +15,5 @@
              (if (= ch \newline) (inc line) line)
              (if (= ch \newline) 1 (inc col)))))))))
 
+(defn strip-location [augmented-text]
+  (apply str (map first augmented-text)))
