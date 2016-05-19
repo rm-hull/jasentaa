@@ -9,7 +9,7 @@
   (m/do*
     (r1 <- p1)
     (r2 <- p2)
-    (m/return (str r1 r2))))
+    (m/return (list r1 r2))))
 
 (defn or-else
   "(a|b)

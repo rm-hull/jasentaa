@@ -2,6 +2,7 @@
   (:require
     [clojure.test :refer :all]
     [jasentaa.monad :as m]
+    [jasentaa.position :refer [strip-location]]
     [jasentaa.parser :refer [parse-all]]
     [jasentaa.parser.basic :refer :all]
     [jasentaa.parser.combinators :refer :all]))
@@ -22,14 +23,14 @@
 (def single-word
   (m/do*
     (word <- (token (plus alpha-num)))
-    (m/return (apply str word))))
+    (m/return (strip-location word))))
 
 (def quoted-string
   (m/do*
     (symb "\"")
     (text <- (plus (any-of digit letter (match " "))))
     (symb "\"")
-    (m/return (apply str text))))
+    (m/return (strip-location text))))
 
 (def bracketed-expr
   (m/do*

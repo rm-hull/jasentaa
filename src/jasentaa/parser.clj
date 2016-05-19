@@ -2,7 +2,8 @@
   (:refer-clojure :exclude [apply])
   (:require
     [jasentaa.parser.combinators :refer [spaces]]
-    [jasentaa.monad :as m :refer [>>=]]))
+    [jasentaa.monad :as m :refer [>>=]]
+    [jasentaa.position :refer [augment-location]]))
 
 (defn apply
   [parser input]
@@ -18,6 +19,7 @@
   [parser input]
   (->>
     input
+    (augment-location)
     (apply parser)
     (filter (comp empty? second))
     ffirst))
