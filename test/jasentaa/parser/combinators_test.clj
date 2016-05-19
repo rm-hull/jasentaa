@@ -2,7 +2,6 @@
   (:require
     [clojure.test :refer :all]
     [jasentaa.monad :as m]
-    [jasentaa.position :refer [emit]]
     [jasentaa.parser.basic :refer :all]
     [jasentaa.parser.combinators :refer :all]))
 
