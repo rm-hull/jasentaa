@@ -1,12 +1,14 @@
 (ns jasentaa.monad)
 
-(defn failure [& _] '())
+(defn failure [& args]
+  '())
 
 (defn bind [v f]
   (f v))
 
 (defn return [v]
-  (fn [input] (list [v input])))
+  (fn [input]
+    (list [v input])))
 
 (defn >>= [m f]
   (fn [input]

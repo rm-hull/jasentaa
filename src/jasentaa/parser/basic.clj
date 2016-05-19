@@ -29,7 +29,8 @@
   (char-cmp not=))
 
 (defn from-re [re]
-  (sat (fn [v] (not (nil? (re-find re (str v)))))))
+  (sat (fn [v]
+         (not (nil? (re-find re (str v)))))))
 
 (defmacro fwd
   "Delays the evaluation of a parser that was forward (declare)d and
