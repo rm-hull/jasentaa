@@ -50,5 +50,5 @@
   (reduce or-else parsers))
 
 (defn string [s]
-  (reduce and-then (map #(match (str %)) s)))
+  (reduce and-then (map (comp match str) s)))
 

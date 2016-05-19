@@ -9,6 +9,6 @@
   (->>
     parser
     (m/bind input)
-    (filter #(= "" (second %)))
+    (filter (comp empty? second))
     ffirst))
 
