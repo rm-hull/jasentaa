@@ -8,12 +8,10 @@
     (list [(first input) (rest input)])))
 
 (defn sat
-  "A basic combinator that takes a predicate, and yields a parser that
-  consumes a single character if it satisfies the predicate, and fails
-  otherwise."
+  "Satisfies a given predicate"
   [pred]
   (>>= any (fn [v]
-	     (if (pred (get v 0))
+	     (if (pred (:char v))
                (m/return v)
                m/failure))))
 
