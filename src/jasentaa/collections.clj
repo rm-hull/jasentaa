@@ -8,10 +8,10 @@
     (nil? b)
     (recur a [])
 
-    (not (coll? a))
+    (not (list? a))
     (recur (list a) b)
 
-    (not (coll? b))
+    (not (list? b))
     (recur a (list b))
 
 
