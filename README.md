@@ -68,9 +68,8 @@ Following the _PyParsing_ implementation, we can build up the
 parsers in Clojure starting with:
 
 ```clojure
-(ns jasentaa.worked-example
+(ns jasentaa.worked-example-1
   (:require
-    [clojure.test :refer :all]
     [jasentaa.monad :as m]
     [jasentaa.parser :refer [parse-all]]
     [jasentaa.parser.basic :refer :all]
@@ -172,9 +171,9 @@ This example is encapsulated as a [test](https://github.com/rm-hull/jasentaa/blo
 
 ## Worked Example #2
 
-The previous example yielded a resulting data structure which corresponded to the 
+The previous example yielded a resulting data structure which corresponded to the
 parsed input. There is no reason why the result cannot be evaluated as part of the
-parsing process. **Graham Hutton** and **Eric Meijer** presented a simple integer
+parsing process. **Graham Hutton** and **Erik Meijer** presented a simple integer
 calculator in [Functional Pearls: _Monadic Parsing in Haskell_](http://www.cs.uwyo.edu/~jlc/courses/3015/parser_pearl.pdf)
 which does exactly this.
 
@@ -187,7 +186,7 @@ using the operators +, -, * and /, together with parentheses:
 
 * _**factor** ::= digit | ( expr )_
 
-* _**digit* ::= 0 | 1 | ... | 9_
+* _**digit** ::= 0 | 1 | ... | 9_
 
 * _**addop** ::= + | -_
 
