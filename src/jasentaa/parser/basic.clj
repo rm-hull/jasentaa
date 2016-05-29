@@ -8,7 +8,9 @@
     (list [(first input) (subs input 1)])))
 
 (defn sat
-  "Satisfies a given predicate"
+  "A basic combinator that takes a predicate, and yields a parser that
+  consumes a single character if it satisfies the predicate, and fails
+  otherwise."
   [pred]
   (>>= any (fn [v]
              (if (pred v)

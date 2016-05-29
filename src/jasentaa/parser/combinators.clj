@@ -12,7 +12,10 @@
     (m/return (str r1 r2))))
 
 (defn or-else
-  "(a|b)"
+  "(a|b)
+
+  Non-deterministic choice (++) operator. Applies both parsers
+  to the argument string, and appends their list of results."
   [p1 p2]
   (fn [input]
     (lazy-cat (m/bind input p1) (m/bind input p2))))
@@ -21,12 +24,18 @@
 (declare optional)
 
 (defn many
-  "(a*)"
+  "(a*)
+
+  Parse repeated applications of a parser; the many combinator
+  permits zero or more applications of the parser."
   [parser]
   (optional (plus parser)))
 
 (defn plus
-  "(a+) equals to (aa*)"
+  "(a+) equals to (aa*)
+
+  Parse repeated applications of a parser; the plus combinator
+  permits one or more applications of the parser."
   [parser]
   (m/do*
     (a <- parser)
@@ -38,17 +47,24 @@
   [parser]
   (or-else parser (m/return "")))
 
-(def space
-  (or-else
-    (match " ")
-    (match "\t")))
-
-(def spaces
-  (many space))
-
 (defn any-of [& parsers]
   (reduce or-else parsers))
 
-(defn string [s]
-  (reduce and-then (map (comp match str) s)))
+(def space
+  "Parse a single space, tab, newline or carriage-return."
+  (any-of
+    (match " ")
+    (match "\t")
+    (match "\n")
+    (match "\r")))
+
+(def spaces
+  "Parse a string of (zero or more) spaces, tabs, and newlines."
+  (many space))
+
+(defn string
+  "Parse a specific string."
+  [input]
+  (reduce and-then (map (comp match str) input)))
+
 
