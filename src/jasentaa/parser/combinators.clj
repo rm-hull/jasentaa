@@ -1,7 +1,8 @@
 (ns jasentaa.parser.combinators
   (:require
     [jasentaa.parser.basic :refer [match]]
-    [jasentaa.monad :as m :refer [>>=]]))
+    [jasentaa.monad :as m :refer [>>=]]
+    [jasentaa.collections :refer [join]]))
 
 (defn and-then
   "(ab)"
@@ -9,7 +10,7 @@
   (m/do*
     (r1 <- p1)
     (r2 <- p2)
-    (m/return (list r1 r2))))
+    (m/return (join r1 r2))))
 
 (defn or-else
   "(a|b)
