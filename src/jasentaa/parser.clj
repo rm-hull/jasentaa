@@ -5,6 +5,7 @@
     [jasentaa.monad :as m :refer [>>=]]))
 
 (defn apply
+  "Apply a parser, throwing away any leading space:"
   [parser input]
   (m/bind
     input
