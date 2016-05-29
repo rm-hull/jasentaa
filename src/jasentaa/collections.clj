@@ -14,17 +14,5 @@
     (not (list? b))
     (recur a (list b))
 
-
     :else
     (concat a b)))
-
-(join [1] 2)
-(join 1 [2])
-(join 1 2)
-(join [1] [2])
-(join nil 3)
-(join 3 nil)
-(join nil 3)
-
-
-(coll? nil)
