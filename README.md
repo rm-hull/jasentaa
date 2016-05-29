@@ -192,6 +192,69 @@ using the operators +, -, * and /, together with parentheses:
 
 * _**mulop** ::= * | /_
 
+As per the _Haskell_ implementation, we need to forward declare
+the _expr_ parser:
+
+```clojure
+(ns jasentaa.worked-example-2
+  (:require
+    [jasentaa.monad :as m]
+    [jasentaa.parser :as p]
+    [jasentaa.parser.basic :refer :all]
+    [jasentaa.parser.combinators :refer :all]))
+
+(declare expr)
+```
+
+The _digit_ parser follows the exact same implementation; A check is made
+to see if the current input satisfies the `digit?` predicate, and the
+returned value is calculated from the ordinal value of the character minus
+zero's ordinal.
+
+```clojure
+(defn- digit? [^Character c]
+  (Character/isDigit c))
+
+(def digit
+  (m/do*
+    (x <- (token (sat digit?)))
+    (m/return (- (byte x) (byte \0)))))
+```
+
+_factor_ is either a single digit or a bracketed-expression:
+
+```clojure
+(def factor
+  (choice
+    digit
+    (m/do*
+      (symb "(")
+      (n <- (fwd expr))
+      (symb ")")
+      (m/return n))))
+```
+
+_addop_ and _mulop_ yield a choice of the core function for +, -, * and /
+respectively. _term_ and _expr_ are then simple `chain-left` applications
+as per the declared grammar:
+
+```clojure
+(def mulop
+  (choice
+    (m/do*
+      (symb "*")
+      (m/return *))
+    (m/do*
+      (symb "/")
+      (m/return /))))
+
+(def term
+  (chain-left factor mulop))
+
+(def expr
+  (chain-left term addop))
+```
+
 This example is also encapsulated as another [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/worked_example_2.clj).
 
 ## Further examples & implementations
