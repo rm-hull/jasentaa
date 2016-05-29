@@ -1,4 +1,4 @@
-(ns jasentaa.worked-example
+(ns jasentaa.worked-example-1
   (:require
     [clojure.test :refer :all]
     [jasentaa.monad :as m]
