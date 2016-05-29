@@ -20,6 +20,17 @@
   (fn [input]
     (lazy-cat (m/bind input p1) (m/bind input p2))))
 
+(defn choice
+  "(a|b)
+
+  Deterministic choice (+++) operator. Has the same behaviour
+  as `or-else`, except that at most one result is returned."
+  [p1 p2]
+  (fn [input]
+    (if-let [[x & xs] (m/bind input (or-else p1 p2))]
+      [x]
+      [])))
+
 (declare plus)
 (declare optional)
 
@@ -67,4 +78,38 @@
   [input]
   (reduce and-then (map (comp match str) input)))
 
+(defn token
+  "Parse a token using a parser p, throwing away any trailing space."
+  [p]
+  (m/do*
+    (a <- p)
+    spaces
+    (m/return a)))
 
+(def symb
+  "Parse a symbolic token."
+  (comp token string))
+
+(defn chain-left
+  "Parse repeated applications of a parser p, separated by
+  applications of a parser op whose result value is an
+  operator that is assumed to associate to the left, and
+  which is used to combine the results from the p parsers."
+  ([p op a]
+  (choice
+    (chain-left p op)
+    (m/return a)))
+
+  ([p op]
+  (m/do*
+    (a <- p)
+    (rst <- (many
+              (m/do*
+                (f <- op)
+                (b <- p)
+                (m/return [f b]))))
+    (m/return
+      (reduce
+        (fn [acc [f b]] (f a b))
+        a
+        rst)))))
