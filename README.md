@@ -88,27 +88,21 @@ parsers for _singleWord_, _quotedString_ and bracketed expressions.
 
 (def single-word
   (m/do*
-    spaces
-    (word <- (plus alpha-num))
-    spaces
+    (word <- (token (plus alpha-num)))
     (m/return (apply str word))))
 
 (def quoted-string
   (m/do*
-    spaces
-    (match "\"")
+    (symb "\"")
     (text <- (plus (any-of digit letter (match " "))))
-    (match "\"")
-    spaces
+    (symb "\"")
     (m/return (apply str text))))
 
 (def bracketed-expr
   (m/do*
-    (match "(")
-    spaces
+    (symb "(")
     (expr <- search-expr)
-    spaces
-    (match ")")
+    (symb ")")
     (m/return expr)))
 ```
 
@@ -120,7 +114,7 @@ returned value is wrapped with a `:NOT` keyword as necessary:
 ```clojure
 (def search-term
   (m/do*
-    (neg <- (optional (and-then (string "not") spaces)))
+    (neg <- (optional (token (string "not"))))
     (term <- (any-of single-word quoted-string bracketed-expr))
     (m/return (if (empty? neg) term (list :NOT term)))))
 ```
@@ -132,13 +126,13 @@ of the earlier definitions:
 (def search-and
   (m/do*
     (fst <- search-term)
-    (rst <- (many (m/do* (plus space) (string "and") (plus space) search-term)))
+    (rst <- (many (m/do* (token (string "and")) search-term)))
     (m/return (if (empty? rst) fst (cons :AND (cons fst rst))))))
 
 (def search-expr
   (m/do*
     (fst <- search-and)
-    (rst <- (many (m/do* (plus space) (string "or") (plus space) search-and)))
+    (rst <- (many (m/do* (token (string "or")) search-and)))
     (m/return (if (empty? rst) fst (cons :OR (cons fst rst))))))
 ```
 
