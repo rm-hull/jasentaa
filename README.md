@@ -33,7 +33,7 @@ For maven-based projects, add the following to your `pom.xml`:
 </dependency>
 ```
 
-## Worked Example
+## Worked Example #1
 
 In [Getting Started with PyParsing](http://shop.oreilly.com/product/9780596514235.do),
 **Paul McGuire** describes an example search string interface, with support for
@@ -164,9 +164,34 @@ Testing the parsers for the given examples:
 ; => (:AND (:NOT (:OR "steel" "iron")) "lime green")
 ```
 
-This example is encapsulated as a [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/working_example.clj).
+This example is encapsulated as a [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/worked_example_1.clj).
 
-## Further examples
+## Worked Example #2
+
+The previous example yielded a resulting data structure which corresponded to the 
+parsed input. There is no reason why the result cannot be evaluated as part of the
+parsing process. **Graham Hutton** and **Eric Meijer** presented a simple integer
+calculator in [Functional Pearls: _Monadic Parsing in Haskell_](http://www.cs.uwyo.edu/~jlc/courses/3015/parser_pearl.pdf)
+which does exactly this.
+
+Considering a standard grammar for arithmetic expressions built up from single digits
+using the operators +, -, * and /, together with parentheses:
+
+* _**expr** ::= expr addop term | term_
+
+* _**term** ::= term mulop factor | factor_
+
+* _**factor** ::= digit | ( expr )_
+
+* _**digit* ::= 0 | 1 | ... | 9_
+
+* _**addop** ::= + | -_
+
+* _**mulop** ::= * | /_
+
+This example is also encapsulated as another [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/worked_example_2.clj).
+
+## Further examples & implementations
 
 * [ODS Search Appliance](https://github.com/rm-hull/ods-search-appliance) uses
   a similar EBNF grammar for search phrases to the above example. However
