@@ -8,14 +8,13 @@
     [org.clojure/clojure "1.8.0"]]
   :scm {:url "git@github.com:rm-hull/jasentaa.git"}
   :plugins [
-    [codox "0.9.4"] ]
+    [lein-codox "0.9.5"] ]
   :source-paths ["src"]
   :jar-exclusions [#"(?:^|/).git"]
   :codox {
-    :sources ["src"]
-    :output-dir "doc/api"
-    :src-dir-uri "http://github.com/rm-hull/jasentaa/blob/master/"
-    :src-linenum-anchor-prefix "L" }
+    :source-paths ["src"]
+    :output-path "doc/api"
+    :source-uri "http://github.com/rm-hull/jasentaa/blob/master/{filepath}#L{line}" }
   :min-lein-version "2.6.1"
   :profiles {
     :dev {
