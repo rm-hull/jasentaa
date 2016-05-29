@@ -33,6 +33,10 @@ For maven-based projects, add the following to your `pom.xml`:
 </dependency>
 ```
 
+## API Documentation
+
+See [www.destructuring-bind.org/jasentaa](http://www.destructuring-bind.org/jasentaa/) for API details.
+
 ## Worked Example #1
 
 In [Getting Started with PyParsing](http://shop.oreilly.com/product/9780596514235.do),
