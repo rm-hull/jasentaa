@@ -6,6 +6,7 @@
     [jasentaa.position :refer [augment-location]]))
 
 (defn apply
+  "Apply a parser, throwing away any leading space:"
   [parser input]
   (m/bind
     input

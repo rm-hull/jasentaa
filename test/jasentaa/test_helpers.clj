@@ -11,4 +11,4 @@
 	(if (char? (-> result first :char))
 	  (-> result first :char)
 	  (mapv :char (first result)))
-        (strip-location (fnext result))]))))
+	(strip-location (fnext result))]))))

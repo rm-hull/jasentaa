@@ -28,9 +28,10 @@
   as `or-else`, except that at most one result is returned."
   [p1 p2]
   (fn [input]
-    (if-let [[x & xs] (m/bind input (or-else p1 p2))]
-      [x]
-      [])))
+    (let [[x & xs] (m/bind input (or-else p1 p2))]
+      (if (nil? x)
+        []
+        [x]))))
 
 (declare plus)
 (declare optional)
@@ -111,6 +112,6 @@
                 (m/return [f b]))))
     (m/return
       (reduce
-        (fn [acc [f b]] (f a b))
+        (fn [acc [f b]] (f acc b))
         a
         rst)))))

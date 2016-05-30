@@ -20,7 +20,7 @@ There is a version hosted at [Clojars](https://clojars.org/rm-hull/infix).
 For leiningen include a dependency:
 
 ```clojure
-[rm-hull/jasentaa "0.1.0"]
+[rm-hull/jasentaa "0.1.1"]
 ```
 
 For maven-based projects, add the following to your `pom.xml`:
@@ -29,7 +29,7 @@ For maven-based projects, add the following to your `pom.xml`:
 <dependency>
   <groupId>rm-hull</groupId>
   <artifactId>jasentaa</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 
@@ -200,10 +200,10 @@ the _expr_ parser:
 (declare expr)
 ```
 
-The _digit_ parser follows the exact same implementation; A check is made
-to see if the current input satisfies the `digit?` predicate, and the
-returned value is calculated from the ordinal value of the character minus
-zero's ordinal.
+The _digit_ parser follows the exact same implementation as the Haskell
+example; A check is made to see if the current input satisfies the `digit?`
+predicate, and the returned value is calculated from the ordinal value of the
+character minus zero's ordinal.
 
 ```clojure
 (defn- digit? [^Character c]
@@ -247,6 +247,13 @@ as per the declared grammar:
 
 (def expr
   (chain-left term addop))
+```
+
+Testing the example expression yields the expected result:
+
+```clojure
+(take 1 (p/apply expr " 1 - 2 * 3 + 4 "))
+; => ([-1, ""])
 ```
 
 This example is also encapsulated as another [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/worked_example_2.clj).
