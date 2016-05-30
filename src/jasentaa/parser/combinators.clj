@@ -111,6 +111,6 @@
                 (m/return [f b]))))
     (m/return
       (reduce
-        (fn [acc [f b]] (f a b))
+        (fn [acc [f b]] (f acc b))
         a
         rst)))))
