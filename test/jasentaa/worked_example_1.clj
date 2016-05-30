@@ -22,15 +22,15 @@
 
 (def single-word
   (m/do*
-    (word <- (token (plus alpha-num)))
-    (m/return (strip-location word))))
+    (w <- (token (plus alpha-num)))
+    (m/return (strip-location w))))
 
 (def quoted-string
   (m/do*
     (symb "\"")
-    (text <- (plus (any-of digit letter (match " "))))
+    (t <- (plus (any-of digit letter (match " "))))
     (symb "\"")
-    (m/return (strip-location text))))
+    (m/return (strip-location t))))
 
 (def bracketed-expr
   (m/do*

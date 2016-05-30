@@ -71,6 +71,7 @@ parsers in Clojure starting with:
 (ns jasentaa.worked-example-1
   (:require
     [jasentaa.monad :as m]
+    [jasentaa.position :refer [strip-location]]
     [jasentaa.parser :refer [parse-all]]
     [jasentaa.parser.basic :refer :all]
     [jasentaa.parser.combinators :refer :all]))
@@ -88,15 +89,15 @@ parsers for _singleWord_, _quotedString_ and bracketed expressions.
 
 (def single-word
   (m/do*
-    (word <- (token (plus alpha-num)))
-    (m/return (apply str word))))
+    (w <- (token (plus alpha-num)))
+    (m/return (strip-location w))))
 
 (def quoted-string
   (m/do*
     (symb "\"")
-    (text <- (plus (any-of digit letter (match " "))))
+    (t <- (plus (any-of digit letter (match " "))))
     (symb "\"")
-    (m/return (apply str text))))
+    (m/return (strip-location t))))
 
 (def bracketed-expr
   (m/do*
@@ -212,7 +213,7 @@ character minus zero's ordinal.
 (def digit
   (m/do*
     (x <- (token (sat digit?)))
-    (m/return (- (byte x) (byte \0)))))
+    (m/return (- (byte (:char x)) (byte \0)))))
 ```
 
 _factor_ is either a single digit or a bracketed-expression:
