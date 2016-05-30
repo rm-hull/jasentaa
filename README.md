@@ -200,10 +200,10 @@ the _expr_ parser:
 (declare expr)
 ```
 
-The _digit_ parser follows the exact same implementation; A check is made
-to see if the current input satisfies the `digit?` predicate, and the
-returned value is calculated from the ordinal value of the character minus
-zero's ordinal.
+The _digit_ parser follows the exact same implementation as the Haskell
+example; A check is made to see if the current input satisfies the `digit?`
+predicate, and the returned value is calculated from the ordinal value of the
+character minus zero's ordinal.
 
 ```clojure
 (defn- digit? [^Character c]
@@ -247,6 +247,13 @@ as per the declared grammar:
 
 (def expr
   (chain-left term addop))
+```
+
+Testing the example expression yields the expected result:
+
+```clojure
+(take 1 (p/apply expr " 1 - 2 * 3 + 4 "))
+; => ([-1, ""])
 ```
 
 This example is also encapsulated as another [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/worked_example_2.clj).

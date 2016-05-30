@@ -60,5 +60,6 @@
 (def expr
   (chain-left term addop))
 
-;(deftest check-evaluate-expr
-;  (is (= [[-1 ""]] (p/apply expr " 1"))))
+(deftest check-evaluate-expr
+  (is (= [[-1 ""]] (take 1 (p/apply expr " 1 - 2 * 3 + 4 ")))))
+
