@@ -1,4 +1,4 @@
-(defproject rm-hull/jasentaa "0.1.1-SNAPSHOT"
+(defproject rm-hull/jasentaa "0.1.1"
   :description "A parser-combinator library in Clojure"
   :url "https://github.com/rm-hull/jacentaa"
   :license {
