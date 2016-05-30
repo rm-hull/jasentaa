@@ -9,7 +9,7 @@
   "Apply a parser, throwing away any leading space:"
   [parser input]
   (m/bind
-    input
+    (augment-location input)
     (m/do*
       spaces
       parser)))
@@ -20,7 +20,6 @@
   [parser input]
   (->>
     input
-    (augment-location)
     (apply parser)
     (filter (comp empty? second))
     ffirst))
