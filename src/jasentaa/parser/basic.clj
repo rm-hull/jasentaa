@@ -11,7 +11,7 @@
   "Satisfies a given predicate"
   [pred]
   (>>= any (fn [v]
-	     (if (pred (:char v))
+         (if (pred (:char v))
                (m/return v)
                m/failure))))
 

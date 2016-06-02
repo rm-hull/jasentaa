@@ -8,7 +8,7 @@
     (if (empty? result)
       (m/failure)
       (list [
-	(if (char? (-> result first :char))
-	  (-> result first :char)
-	  (mapv :char (first result)))
-	(strip-location (fnext result))]))))
+    (if (char? (-> result first :char))
+      (-> result first :char)
+      (mapv :char (first result)))
+    (strip-location (fnext result))]))))

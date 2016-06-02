@@ -10,13 +10,13 @@
    (let [ch (first text)]
      (if-not (nil? ch)
        (cons
-	 (Location. ch line col offset)
-	 (lazy-seq
-	   (augment-location
-	     (rest text)
-	     (if (= ch \newline) (inc line) line)
-	     (if (= ch \newline) 1 (inc col))
-	     (inc offset))))))))
+     (Location. ch line col offset)
+     (lazy-seq
+       (augment-location
+         (rest text)
+         (if (= ch \newline) (inc line) line)
+         (if (= ch \newline) 1 (inc col))
+         (inc offset))))))))
 
 (defn strip-location [augmented-text]
   (apply str (map :char augmented-text)))

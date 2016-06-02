@@ -7,26 +7,26 @@
 
 (deftest check-augment-then-strip
   (is (= "the quick brown fox"
-	 (strip-location
-	   (augment-location
-	     "the quick brown fox")))))
+     (strip-location
+       (augment-location
+         "the quick brown fox")))))
 
 (deftest check-augment-location-plain-string
   (is (nil? (augment-location "")))
   (is (= (augment-location "Hello\nWorld!")
-	 (list
-	   (Location. \H 1 1 0)
-	   (Location. \e 1 2 1)
-	   (Location. \l 1 3 2)
-	   (Location. \l 1 4 3)
-	   (Location. \o 1 5 4)
-	   (Location. \newline 1 6 5)
-	   (Location. \W 2 1 6)
-	   (Location. \o 2 2 7)
-	   (Location. \r 2 3 8)
-	   (Location. \l 2 4 9)
-	   (Location. \d 2 5 10)
-	   (Location. \! 2 6 11)))))
+     (list
+       (Location. \H 1 1 0)
+       (Location. \e 1 2 1)
+       (Location. \l 1 3 2)
+       (Location. \l 1 4 3)
+       (Location. \o 1 5 4)
+       (Location. \newline 1 6 5)
+       (Location. \W 2 1 6)
+       (Location. \o 2 2 7)
+       (Location. \r 2 3 8)
+       (Location. \l 2 4 9)
+       (Location. \d 2 5 10)
+       (Location. \! 2 6 11)))))
 
 (deftest check-exception
   (is (thrown-with-msg? java.text.ParseException
