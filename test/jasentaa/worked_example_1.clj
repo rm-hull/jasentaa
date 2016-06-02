@@ -71,4 +71,9 @@
         (parse-all search-expr "not steel or iron and \"lime green\"")))
 
   (is (= [:AND [:NOT [:OR  "steel" "iron"]] "lime green"]
-        (parse-all search-expr "not(steel or iron) and \"lime green\""))))
+        (parse-all search-expr "not(steel or iron) and \"lime green\"")))
+
+  (is (thrown-with-msg?
+        java.text.ParseException
+        #"Failed to parse text at line: 1, col: 7"
+        (parse-all search-expr "steel iron"))))
