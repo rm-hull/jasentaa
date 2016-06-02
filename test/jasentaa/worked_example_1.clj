@@ -76,4 +76,9 @@
   (is (thrown-with-msg?
         java.text.ParseException
         #"Failed to parse text at line: 1, col: 7"
-        (parse-all search-expr "steel iron"))))
+        (parse-all search-expr "steel iron")))
+
+  (is (thrown-with-msg?
+        java.text.ParseException
+        #"Unable to parse empty text"
+        (parse-all search-expr ""))))

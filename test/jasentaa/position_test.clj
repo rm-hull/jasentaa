@@ -30,5 +30,8 @@
 
 (deftest check-exception
   (is (thrown-with-msg? java.text.ParseException
-	#"Failed to parse text at line: 6, col: 31"
-	(throw (parse-exception (Location. \Y 6 31 321))))))
+    #"Unable to parse empty text"
+    (throw (parse-exception nil))))
+  (is (thrown-with-msg? java.text.ParseException
+    #"Failed to parse text at line: 6, col: 31"
+    (throw (parse-exception (Location. \Y 6 31 321))))))
