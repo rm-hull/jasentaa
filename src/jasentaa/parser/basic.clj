@@ -5,15 +5,13 @@
 (defn any [input]
   (if (empty? input)
     (m/failure input)
-    (list [(first input) (subs input 1)])))
+    (list [(first input) (rest input)])))
 
 (defn sat
-  "A basic combinator that takes a predicate, and yields a parser that
-  consumes a single character if it satisfies the predicate, and fails
-  otherwise."
+  "Satisfies a given predicate"
   [pred]
   (>>= any (fn [v]
-             (if (pred v)
+	     (if (pred (:char v))
                (m/return v)
                m/failure))))
 

@@ -25,7 +25,7 @@
 (def digit
   (m/do*
     (x <- (token (sat digit?)))
-    (m/return (- (byte x) (byte \0)))))
+    (m/return (- (byte (:char x)) (byte \0)))))
 
 (def factor
   (choice
@@ -61,5 +61,5 @@
   (chain-left term addop))
 
 (deftest check-evaluate-expr
-  (is (= [[-1 ""]] (take 1 (p/apply expr " 1 - 2 * 3 + 4 ")))))
+  (is (= [[-1 ()]] (take 1 (p/apply expr " 1 - 2 * 3 + 4 ")))))
 

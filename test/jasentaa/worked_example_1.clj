@@ -2,6 +2,7 @@
   (:require
     [clojure.test :refer :all]
     [jasentaa.monad :as m]
+    [jasentaa.position :refer [strip-location]]
     [jasentaa.parser :refer [parse-all]]
     [jasentaa.parser.basic :refer :all]
     [jasentaa.parser.combinators :refer :all]))
@@ -21,15 +22,15 @@
 
 (def single-word
   (m/do*
-    (word <- (token (plus alpha-num)))
-    (m/return (apply str word))))
+    (w <- (token (plus alpha-num)))
+    (m/return (strip-location w))))
 
 (def quoted-string
   (m/do*
     (symb "\"")
-    (text <- (plus (any-of digit letter (match " "))))
+    (t <- (plus (any-of digit letter (match " "))))
     (symb "\"")
-    (m/return (apply str text))))
+    (m/return (strip-location t))))
 
 (def bracketed-expr
   (m/do*
@@ -70,4 +71,9 @@
         (parse-all search-expr "not steel or iron and \"lime green\"")))
 
   (is (= [:AND [:NOT [:OR  "steel" "iron"]] "lime green"]
-        (parse-all search-expr "not(steel or iron) and \"lime green\""))))
+        (parse-all search-expr "not(steel or iron) and \"lime green\"")))
+
+  (is (thrown-with-msg?
+        java.text.ParseException
+        #"Failed to parse text at line: 1, col: 7"
+        (parse-all search-expr "steel iron"))))

@@ -37,7 +37,56 @@ For maven-based projects, add the following to your `pom.xml`:
 
 See [www.destructuring-bind.org/jasentaa](http://www.destructuring-bind.org/jasentaa/) for API details.
 
-## Worked Example #1
+### Breaking changes between versions 0.1.x → 0.2.x
+
+The **0.1.x** line worked on parsing a stream of characters. If the parser
+became exhausted, then `parse-all` would return `nil` and no indication
+of where the parser failed.
+
+As of **0.2.0**, althought the parser still accepts a stream of characters, it
+reprocesses them into a stream of [Location](https://github.com/rm-hull/jasentaa/blob/master/src/jasentaa/position.clj#L3)'s.
+If the input cannot be fully parsed, `parse-all` now throws a [ParseException](https://docs.oracle.com/javase/8/docs/api/java/text/ParseException.html#ParseException-java.lang.String-int-),
+where the message gives a human-readable location of where the parse failed, and `getErrorOffset` gives the zero-indexed offset to the start of the unparseable text.
+
+Any combinators previously operating on individual characters should extract
+characters using the `:char` keyword. For example in 0.1.x, the following code:
+
+```clojure
+(def digit
+  (m/do*
+    (x <- (token (sat digit?)))
+    (m/return (- (byte x) (byte \0)))))
+```
+
+Would now have to become:
+
+```clojure
+(def digit
+  (m/do*
+    (x <- (token (sat digit?)))
+    (m/return (- (byte (:char x)) (byte \0)))))
+```
+
+Combinators that previously operated on strings now have to extract the string
+using `jasentaa.location/strip-location`, so a previous 0.1.x code example that does:
+
+```clojure
+(def single-word
+  (m/do*
+    (w <- (token (plus alpha-num)))
+    (m/return w)))
+```
+
+Should be coverted to:
+
+```clojure
+(def single-word
+  (m/do*
+    (w <- (token (plus alpha-num)))
+    (m/return (strip-location w))))
+```
+
+# Worked Example #1
 
 In [Getting Started with PyParsing](http://shop.oreilly.com/product/9780596514235.do),
 **Paul McGuire** describes an example search string interface, with support for
@@ -71,6 +120,7 @@ parsers in Clojure starting with:
 (ns jasentaa.worked-example-1
   (:require
     [jasentaa.monad :as m]
+    [jasentaa.position :refer [strip-location]]
     [jasentaa.parser :refer [parse-all]]
     [jasentaa.parser.basic :refer :all]
     [jasentaa.parser.combinators :refer :all]))
@@ -88,15 +138,15 @@ parsers for _singleWord_, _quotedString_ and bracketed expressions.
 
 (def single-word
   (m/do*
-    (word <- (token (plus alpha-num)))
-    (m/return (apply str word))))
+    (w <- (token (plus alpha-num)))
+    (m/return (strip-location w))))
 
 (def quoted-string
   (m/do*
     (symb "\"")
-    (text <- (plus (any-of digit letter (match " "))))
+    (t <- (plus (any-of digit letter (match " "))))
     (symb "\"")
-    (m/return (apply str text))))
+    (m/return (strip-location t))))
 
 (def bracketed-expr
   (m/do*
@@ -212,7 +262,7 @@ character minus zero's ordinal.
 (def digit
   (m/do*
     (x <- (token (sat digit?)))
-    (m/return (- (byte x) (byte \0)))))
+    (m/return (- (byte (:char x)) (byte \0)))))
 ```
 
 _factor_ is either a single digit or a bracketed-expression:
