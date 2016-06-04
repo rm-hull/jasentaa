@@ -28,6 +28,11 @@
        (Location. \d 2 5 10)
        (Location. \! 2 6 11)))))
 
+(deftest check-strip-location
+  (is (= \h (strip-location (Location. \h 1 1 0))))
+  (is (= nil (strip-location nil)))
+  (is (= "Hello" (strip-location "Hello"))))
+
 (deftest check-exception
   (is (thrown-with-msg? java.text.ParseException
     #"Unable to parse empty text"

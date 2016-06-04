@@ -18,8 +18,16 @@
          (if (= ch \newline) 1 (inc col))
          (inc offset))))))))
 
-(defn strip-location [augmented-text]
-  (apply str (map :char augmented-text)))
+(defn strip-location [input]
+  (cond
+    (not (nil? (:char input)))
+    (:char input)
+
+    (seq? input)
+    (apply str (map strip-location input))
+
+    :else
+    input))
 
 (defn parse-exception [location]
   (if (nil? location)

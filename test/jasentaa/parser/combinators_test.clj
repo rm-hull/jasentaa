@@ -22,6 +22,6 @@
   (let [parser (many (match "a"))]
     (is (= [[\a] ""]          (first (test-harness parser "a"))))
     (is (= [[\a \a \a] "bbb"] (first (test-harness parser "aaabbb"))))
-    (is (= [[] ""]            (first (test-harness parser ""))))
+    (is (= [[] nil]           (first (test-harness parser ""))))
     (is (= [[\a] "pple"]      (first (test-harness parser "apple"))))
     (is (= [[] "orange"]      (first (test-harness parser "orange"))))))

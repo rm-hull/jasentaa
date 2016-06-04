@@ -3,6 +3,7 @@
     [clojure.test :refer :all]
     [jasentaa.monad :as m]
     [jasentaa.parser :as p]
+    [jasentaa.position :refer [strip-location]]
     [jasentaa.parser.basic :refer :all]
     [jasentaa.parser.combinators :refer :all]))
 
@@ -25,7 +26,7 @@
 (def digit
   (m/do*
     (x <- (token (sat digit?)))
-    (m/return (- (byte (:char x)) (byte \0)))))
+    (m/return (- (byte (strip-location x)) (byte \0)))))
 
 (def factor
   (choice
