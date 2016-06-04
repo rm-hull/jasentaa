@@ -20,7 +20,7 @@ There is a version hosted at [Clojars](https://clojars.org/rm-hull/infix).
 For leiningen include a dependency:
 
 ```clojure
-[rm-hull/jasentaa "0.2.0"]
+[rm-hull/jasentaa "0.2.1"]
 ```
 
 For maven-based projects, add the following to your `pom.xml`:
@@ -29,7 +29,7 @@ For maven-based projects, add the following to your `pom.xml`:
 <dependency>
   <groupId>rm-hull</groupId>
   <artifactId>jasentaa</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.1</version>
 </dependency>
 ```
 
