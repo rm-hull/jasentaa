@@ -80,5 +80,5 @@
 
   (is (thrown-with-msg?
         java.text.ParseException
-        #"Unable to parse empty text"
+        #"Unable to parse text"
         (parse-all search-expr ""))))

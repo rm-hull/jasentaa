@@ -35,7 +35,7 @@
 
 (deftest check-exception
   (is (thrown-with-msg? java.text.ParseException
-    #"Unable to parse empty text"
+    #"Unable to parse text"
     (throw (parse-exception nil))))
   (is (thrown-with-msg? java.text.ParseException
     #"Failed to parse text at line: 6, col: 31"

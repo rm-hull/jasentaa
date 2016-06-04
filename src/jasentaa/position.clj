@@ -31,7 +31,7 @@
 
 (defn parse-exception [location]
   (if (nil? location)
-    (java.text.ParseException. (str "Unable to parse empty text") 0)
+    (java.text.ParseException. (str "Unable to parse text") 0)
     (java.text.ParseException.
       (str "Failed to parse text at line: " (:line location) ", col: " (:col location))
       (int (:offset location)))))
