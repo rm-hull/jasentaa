@@ -46,10 +46,12 @@ of where the parser failed.
 As of **0.2.0**, althought the parser still accepts a stream of characters, it
 reprocesses them into a stream of [Location](https://github.com/rm-hull/jasentaa/blob/master/src/jasentaa/position.clj#L3)'s.
 If the input cannot be fully parsed, `parse-all` now throws a [ParseException](https://docs.oracle.com/javase/8/docs/api/java/text/ParseException.html#ParseException-java.lang.String-int-),
-where the message gives a human-readable location of where the parse failed, and `getErrorOffset` gives the zero-indexed offset to the start of the unparseable text.
+where the message gives a human-readable location of where the parse failed,
+and `ParseException#getErrorOffset` gives the zero-indexed offset to the start
+of the unparseable text.
 
 Combinators that previously operated on characters or strings now have to
-extract the string using `jasentaa.location/strip-location`, so a previous
+extract the text using `jasentaa.location/strip-location`, so a previous
 0.1.x code example that does:
 
 ```clojure
