@@ -75,7 +75,7 @@
 
   (is (thrown-with-msg?
         java.text.ParseException
-        #"Failed to parse text at line: 1, col: 7"
+        #"Failed to parse text at line: 1, col: 7\nsteel iron\n      \^"
         (parse-all search-expr "steel iron")))
 
   (is (thrown-with-msg?
