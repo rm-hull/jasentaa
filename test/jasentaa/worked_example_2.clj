@@ -62,5 +62,19 @@
   (chain-left term addop))
 
 (deftest check-evaluate-expr
-  (is (= [[-1 ()]] (take 1 (p/apply expr " 1 - 2 * 3 + 4 ")))))
+  (let [expected (+ 4 (- 1 (* 2 3)))]  ; => -1
+    (is (= [[expected ()]] (take 1 (p/apply expr " 1 - 2 * 3 + 4 "))))))
 
+;; Now use chain-right:
+(def term'
+  (chain-right factor mulop))
+
+(def expr'
+  (chain-right term addop))
+
+(deftest check-evaluate-expr'
+  (let [expected (- 1 (+ 4 (* 2 3)))]
+    (is (= [[expected ()]] (take 1 (p/apply expr' " 1 - 2 * 3 + 4 "))))))
+
+(p/apply expr' "3 - 2 - 1")
+(p/apply expr "3 - 2 - 1")

@@ -115,3 +115,28 @@
         (fn [acc [f b]] (f acc b))
         a
         rst)))))
+
+(defn chain-right
+  "Parse repeated applications of a parser p, separated by
+  applications of a parser op whose result value is an
+  operator that is assumed to associate to the right, and
+  which is used to combine the results from the p parsers.
+   "
+  ([p op a]
+  (choice
+    (chain-right p op)
+    (m/return a)))
+
+  ([p op]
+  (m/do*
+    (scan <- (many
+               (m/do*
+                 (a <- p)
+                 (f <- op)
+                 (m/return [f a]))))
+    (b <- p)
+    (m/return
+      (reduce
+        (fn [acc [f a]] (f a acc))
+        b
+        (reverse scan))))))

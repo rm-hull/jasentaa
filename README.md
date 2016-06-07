@@ -289,7 +289,28 @@ Testing the example expression yields the expected result:
 ```clojure
 (take 1 (p/apply expr " 1 - 2 * 3 + 4 "))
 ; => ([-1, ()])
+; i.e. (+ 4 (- 1 (* 2 3)))
 ```
+
+`chain-left` associates from the left, so this expression evaluates as ((1 - (2
+* 3)) + 4). `chain-right` associates from the right, so substuting that would
+evaluate as (1 - ((2 * 3) + 4)) resulting in -9.
+
+```clojure
+(def term'
+  (chain-right factor mulop))
+
+(def expr'
+  (chain-right term addop))
+
+(take 1 (p/apply expr' " 1 - 2 * 3 + 4 "))
+; => ([-9, ()])
+; => (- 1 (+ 4 (* 2 3)))
+```
+
+_I can't immediately think of a scenarion where `chain-right` would be used
+over `chain-left` - postfix notation perhaps? - but other than that..._
+
 
 This example is also encapsulated as another [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/worked_example_2.clj).
 
