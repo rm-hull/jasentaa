@@ -292,9 +292,9 @@ Testing the example expression yields the expected result:
 ; i.e. (+ 4 (- 1 (* 2 3)))
 ```
 
-`chain-left` associates from the left, so this expression evaluates as ((1 - (2
-* 3)) + 4). `chain-right` associates from the right, so substuting that would
-evaluate as (1 - ((2 * 3) + 4)) resulting in -9.
+`chain-left` associates from the left, so this expression evaluates as _((1 - (2 * 3)) + 4)_. 
+`chain-right` associates from the right, so substituting that would evaluate as _(1 - ((2 * 3) + 4))_,
+resulting in -9. Clearly, in both cases, multiplcation binds before addition.
 
 ```clojure
 (def term'
@@ -305,7 +305,7 @@ evaluate as (1 - ((2 * 3) + 4)) resulting in -9.
 
 (take 1 (p/apply expr' " 1 - 2 * 3 + 4 "))
 ; => ([-9, ()])
-; => (- 1 (+ 4 (* 2 3)))
+; i.e. (- 1 (+ 4 (* 2 3)))
 ```
 
 _I can't immediately think of a scenarion where `chain-right` would be used
