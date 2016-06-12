@@ -45,7 +45,7 @@
   (optional (plus p)))
 
 (defn plus
-  "(a+) equals to (aa*)
+  "(a+) is equivalent to (aa*)
 
   Parse repeated applications of a parser; the plus combinator
   permits one or more applications of the parser."
@@ -56,11 +56,16 @@
     (m/return (cons a as))))
 
 (defn optional
-  "(a?)"
+  "(a?)
+
+  Parse zero or one applications of a parser."
   [p]
   (or-else p (m/return nil)))
 
 (defn any-of [& ps]
+  "(a|b|c|...)
+
+  Parse application any of the given parsers."
   (reduce or-else ps))
 
 (def space
