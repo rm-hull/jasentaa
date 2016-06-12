@@ -20,7 +20,7 @@ There is a version hosted at [Clojars](https://clojars.org/rm-hull/infix).
 For leiningen include a dependency:
 
 ```clojure
-[rm-hull/jasentaa "0.2.2"]
+[rm-hull/jasentaa "0.2.3"]
 ```
 
 For maven-based projects, add the following to your `pom.xml`:
@@ -29,7 +29,7 @@ For maven-based projects, add the following to your `pom.xml`:
 <dependency>
   <groupId>rm-hull</groupId>
   <artifactId>jasentaa</artifactId>
-  <version>0.2.2</version>
+  <version>0.2.3</version>
 </dependency>
 ```
 
@@ -294,7 +294,7 @@ Testing the example expression yields the expected result:
 ; i.e. (+ 4 (- 1 (* 2 3)))
 ```
 
-`chain-left` associates from the left, so this expression evaluates as _((1 - (2 * 3)) + 4)_. 
+`chain-left` associates from the left, so this expression evaluates as _((1 - (2 * 3)) + 4)_.
 `chain-right` associates from the right, so substituting that would evaluate as _(1 - ((2 * 3) + 4))_,
 resulting in -9. Clearly, in both cases, multiplcation binds before addition.
 
