@@ -167,7 +167,7 @@ of the earlier definitions:
 (def search-expr
   (m/do*
     (lst <- (separated-by search-and (symb "or")))
-    (m/return (if (= (count lst) 0)
+    (m/return (if (= (count lst) 1)
                 (first lst)
                 (cons :OR lst)))))
 ```
