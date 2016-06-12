@@ -75,6 +75,3 @@
 (deftest check-evaluate-expr'
   (let [expected (- 1 (+ 4 (* 2 3)))]
     (is (= [[expected ()]] (take 1 (p/apply expr' " 1 - 2 * 3 + 4 "))))))
-
-(p/apply expr' "3 - 2 - 1")
-(p/apply expr "3 - 2 - 1")
