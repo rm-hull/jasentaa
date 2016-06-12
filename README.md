@@ -135,7 +135,7 @@ parsers for _singleWord_, _quotedString_ and bracketed expressions.
 (def bracketed-expr
   (m/do*
     (symb "(")
-    (expr <- search-expr)
+    (expr <- (token search-expr))
     (symb ")")
     (m/return expr)))
 ```
@@ -148,7 +148,7 @@ returned value is wrapped with a `:NOT` keyword as necessary:
 ```clojure
 (def search-term
   (m/do*
-    (neg <- (optional (token (string "not"))))
+    (neg <- (optional (symb "not")))
     (term <- (any-of single-word quoted-string bracketed-expr))
     (m/return (if (empty? neg) term (list :NOT term)))))
 ```
@@ -159,15 +159,17 @@ of the earlier definitions:
 ```clojure
 (def search-and
   (m/do*
-    (fst <- search-term)
-    (rst <- (many (m/do* (token (string "and")) search-term)))
-    (m/return (if (empty? rst) fst (cons :AND (cons fst rst))))))
+    (lst <- (separated-by search-term (symb "and")))
+    (m/return (if (= (count lst) 1)
+                (first lst)
+                (cons :AND lst)))))
 
 (def search-expr
   (m/do*
-    (fst <- search-and)
-    (rst <- (many (m/do* (token (string "or")) search-and)))
-    (m/return (if (empty? rst) fst (cons :OR (cons fst rst))))))
+    (lst <- (separated-by search-and (symb "or")))
+    (m/return (if (= (count lst) 0)
+                (first lst)
+                (cons :OR lst)))))
 ```
 
 Notice how the returned values are (purposely) constructed in prefix notation,
