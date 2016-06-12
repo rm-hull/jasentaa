@@ -41,27 +41,27 @@
 
   Parse repeated applications of a parser; the many combinator
   permits zero or more applications of the parser."
-  [parser]
-  (optional (plus parser)))
+  [p]
+  (optional (plus p)))
 
 (defn plus
   "(a+) equals to (aa*)
 
   Parse repeated applications of a parser; the plus combinator
   permits one or more applications of the parser."
-  [parser]
+  [p]
   (m/do*
-    (a <- parser)
-    (as <- (many parser))
+    (a <- p)
+    (as <- (many p))
     (m/return (cons a as))))
 
 (defn optional
   "(a?)"
-  [parser]
-  (or-else parser (m/return "")))
+  [p]
+  (or-else p (m/return nil)))
 
-(defn any-of [& parsers]
-  (reduce or-else parsers))
+(defn any-of [& ps]
+  (reduce or-else ps))
 
 (def space
   "Parse a single space, tab, newline or carriage-return."
@@ -140,3 +140,5 @@
         (fn [acc [f a]] (f a acc))
         b
         (reverse scan))))))
+
+(defn separated-by [p sep])
