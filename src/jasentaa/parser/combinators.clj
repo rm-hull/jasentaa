@@ -141,4 +141,17 @@
         b
         (reverse scan))))))
 
-(defn separated-by [p sep])
+(defn separated-by
+  "Parse repeated applications of a parser p, separated by
+  applications of a parser sep whose result values are
+  thrown away.
+
+  This parser will process at least one application of p.
+  For a list of zero or more, use:
+
+    (optional (separated-by p sep))"
+  [p sep]
+  (m/do*
+    (fst <- p)
+    (rst <- (many (m/do* sep p)))
+    (m/return (cons fst rst))))
