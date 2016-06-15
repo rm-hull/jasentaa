@@ -70,7 +70,7 @@ Should be coverted to:
     (m/return (strip-location w))))
 ```
 
-# Worked Example #1
+## Worked Example #1
 
 In [Getting Started with PyParsing](http://shop.oreilly.com/product/9780596514235.do),
 **Paul McGuire** describes an example search string interface, with support for
@@ -270,6 +270,15 @@ respectively. _term_ and _expr_ are then simple `chain-left` applications
 as per the declared grammar:
 
 ```clojure
+(def addop
+  (choice
+    (m/do*
+      (symb "+")
+      (m/return +))
+    (m/do*
+      (symb "-")
+      (m/return -))))
+      
 (def mulop
   (choice
     (m/do*
@@ -312,7 +321,6 @@ resulting in -9. Clearly, in both cases, multiplcation binds before addition.
 
 _I can't immediately think of a scenarion where `chain-right` would be used
 over `chain-left` - postfix notation perhaps? - but other than that..._
-
 
 This example is also encapsulated as another [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/worked_example_2.clj).
 
