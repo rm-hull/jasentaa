@@ -51,7 +51,7 @@ and `ParseException#getErrorOffset` gives the zero-indexed offset to the start
 of the unparseable text.
 
 Combinators that previously operated on characters or strings now have to
-extract the text using `jasentaa.location/strip-location`, so a previous
+extract the text using `jasentaa.position/strip-location`, so a previous
 0.1.x code example that does:
 
 ```clojure
