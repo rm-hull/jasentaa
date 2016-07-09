@@ -351,6 +351,7 @@ Substantial portions based on:
 
 * http://www.cs.uwyo.edu/~jlc/courses/3015/parser_pearl.pdf
 * http://www.haskellforall.com/2012/10/parsing-chemical-substructures.html
+* https://speakerdeck.com/kachayev/monadic-parsing-in-python
 
 ## License
 
