@@ -1,11 +1,11 @@
 (ns jasentaa.worked-example-2
   (:require
-    [clojure.test :refer :all]
-    [jasentaa.monad :as m]
-    [jasentaa.parser :as p]
-    [jasentaa.position :refer [strip-location]]
-    [jasentaa.parser.basic :refer :all]
-    [jasentaa.parser.combinators :refer :all]))
+   [clojure.test :refer :all]
+   [jasentaa.monad :as m]
+   [jasentaa.parser :as p]
+   [jasentaa.position :refer [strip-location]]
+   [jasentaa.parser.basic :refer :all]
+   [jasentaa.parser.combinators :refer :all]))
 
 ; BNF Grammar, based at that described in: 'FUNCTIONAL PEARLS: Monadic Parsing in Haskell'
 ; (http://www.cs.uwyo.edu/~jlc/courses/3015/parser_pearl.pdf)
@@ -25,35 +25,35 @@
 
 (def digit
   (m/do*
-    (x <- (token (sat digit?)))
-    (m/return (- (byte (strip-location x)) (byte \0)))))
+   (x <- (token (sat digit?)))
+   (m/return (- (byte (strip-location x)) (byte \0)))))
 
 (def factor
   (choice
-    digit
-    (m/do*
-      (symb "(")
-      (n <- (fwd expr))
-      (symb ")")
-      (m/return n))))
+   digit
+   (m/do*
+    (symb "(")
+    (n <- (fwd expr))
+    (symb ")")
+    (m/return n))))
 
 (def addop
   (choice
-    (m/do*
-      (symb "+")
-      (m/return +))
-    (m/do*
-      (symb "-")
-      (m/return -))))
+   (m/do*
+    (symb "+")
+    (m/return +))
+   (m/do*
+    (symb "-")
+    (m/return -))))
 
 (def mulop
   (choice
-    (m/do*
-      (symb "*")
-      (m/return *))
-    (m/do*
-      (symb "/")
-      (m/return /))))
+   (m/do*
+    (symb "*")
+    (m/return *))
+   (m/do*
+    (symb "/")
+    (m/return /))))
 
 (def term
   (chain-left factor mulop))

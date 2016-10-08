@@ -2,8 +2,8 @@
 
 (defn- not-list? [x]
   (or
-    (not (coll? x))
-    (record? x)))
+   (not (coll? x))
+   (record? x)))
 
 (defn join [a b]
   (cond

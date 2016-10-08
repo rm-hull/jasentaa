@@ -1,8 +1,8 @@
 (ns jasentaa.position
   (:require
-    [clojure.string :as s])
+   [clojure.string :as s])
   (:import
-    [java.text ParseException]))
+   [java.text ParseException]))
 
 (defrecord Location [char line col offset full-text])
 
@@ -14,14 +14,14 @@
    (let [ch (first text)]
      (if-not (nil? ch)
        (cons
-     (Location. ch line col offset full-text)
-     (lazy-seq
-       (augment-location
-         (rest text)
-         (if (= ch \newline) (inc line) line)
-         (if (= ch \newline) 1 (inc col))
-         (inc offset)
-         full-text)))))))
+        (Location. ch line col offset full-text)
+        (lazy-seq
+         (augment-location
+          (rest text)
+          (if (= ch \newline) (inc line) line)
+          (if (= ch \newline) 1 (inc col))
+          (inc offset)
+          full-text)))))))
 
 (defn strip-location [input]
   (cond
@@ -46,7 +46,7 @@
   (if (nil? location)
     (ParseException. (str "Unable to parse text") 0)
     (ParseException.
-      (str
-        "Failed to parse text at line: " (:line location) ", col: " (:col location)
-        \newline (show-error location))
-      (int (:offset location)))))
+     (str
+      "Failed to parse text at line: " (:line location) ", col: " (:col location)
+      \newline (show-error location))
+     (int (:offset location)))))

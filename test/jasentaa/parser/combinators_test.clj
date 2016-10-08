@@ -1,10 +1,10 @@
 (ns jasentaa.parser.combinators-test
   (:require
-    [clojure.test :refer :all]
-    [jasentaa.monad :as m]
-    [jasentaa.test-helpers :refer :all]
-    [jasentaa.parser.basic :refer :all]
-    [jasentaa.parser.combinators :refer :all]))
+   [clojure.test :refer :all]
+   [jasentaa.monad :as m]
+   [jasentaa.test-helpers :refer :all]
+   [jasentaa.parser.basic :refer :all]
+   [jasentaa.parser.combinators :refer :all]))
 
 (deftest check-and-then
   (let [parser (and-then (match "a") (match "b"))]

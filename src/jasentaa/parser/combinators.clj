@@ -1,16 +1,16 @@
 (ns jasentaa.parser.combinators
   (:require
-    [jasentaa.parser.basic :refer [match]]
-    [jasentaa.monad :as m :refer [>>=]]
-    [jasentaa.collections :refer [join]]))
+   [jasentaa.parser.basic :refer [match]]
+   [jasentaa.monad :as m :refer [>>=]]
+   [jasentaa.collections :refer [join]]))
 
 (defn and-then
   "(ab)"
   [p1 p2]
   (m/do*
-    (r1 <- p1)
-    (r2 <- p2)
-    (m/return (join r1 r2))))
+   (r1 <- p1)
+   (r2 <- p2)
+   (m/return (join r1 r2))))
 
 (defn or-else
   "(a|b)
@@ -51,9 +51,9 @@
   permits one or more applications of the parser."
   [p]
   (m/do*
-    (a <- p)
-    (as <- (many p))
-    (m/return (cons a as))))
+   (a <- p)
+   (as <- (many p))
+   (m/return (cons a as))))
 
 (defn optional
   "(a?)
@@ -71,10 +71,10 @@
 (def space
   "Parse a single space, tab, newline or carriage-return."
   (any-of
-    (match " ")
-    (match "\t")
-    (match "\n")
-    (match "\r")))
+   (match " ")
+   (match "\t")
+   (match "\n")
+   (match "\r")))
 
 (def spaces
   "Parse a string of (zero or more) spaces, tabs, and newlines."
@@ -89,9 +89,9 @@
   "Parse a token using a parser p, throwing away any trailing space."
   [p]
   (m/do*
-    (a <- p)
-    spaces
-    (m/return a)))
+   (a <- p)
+   spaces
+   (m/return a)))
 
 (def symb
   "Parse a symbolic token."
@@ -103,23 +103,23 @@
   operator that is assumed to associate to the left, and
   which is used to combine the results from the p parsers."
   ([p op a]
-  (choice
+   (choice
     (chain-left p op)
     (m/return a)))
 
   ([p op]
-  (m/do*
+   (m/do*
     (a <- p)
     (rst <- (many
-              (m/do*
-                (f <- op)
-                (b <- p)
-                (m/return [f b]))))
+             (m/do*
+              (f <- op)
+              (b <- p)
+              (m/return [f b]))))
     (m/return
-      (reduce
-        (fn [acc [f b]] (f acc b))
-        a
-        rst)))))
+     (reduce
+      (fn [acc [f b]] (f acc b))
+      a
+      rst)))))
 
 (defn chain-right
   "Parse repeated applications of a parser p, separated by
@@ -128,23 +128,23 @@
   which is used to combine the results from the p parsers.
    "
   ([p op a]
-  (choice
+   (choice
     (chain-right p op)
     (m/return a)))
 
   ([p op]
-  (m/do*
+   (m/do*
     (scan <- (many
-               (m/do*
-                 (a <- p)
-                 (f <- op)
-                 (m/return [f a]))))
+              (m/do*
+               (a <- p)
+               (f <- op)
+               (m/return [f a]))))
     (b <- p)
     (m/return
-      (reduce
-        (fn [acc [f a]] (f a acc))
-        b
-        (reverse scan))))))
+     (reduce
+      (fn [acc [f a]] (f a acc))
+      b
+      (reverse scan))))))
 
 (defn separated-by
   "Parse repeated applications of a parser p, separated by
@@ -157,6 +157,6 @@
     (optional (separated-by p sep))"
   [p sep]
   (m/do*
-    (fst <- p)
-    (rst <- (many (m/do* sep p)))
-    (m/return (cons fst rst))))
+   (fst <- p)
+   (rst <- (many (m/do* sep p)))
+   (m/return (cons fst rst))))

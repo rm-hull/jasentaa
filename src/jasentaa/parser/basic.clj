@@ -1,6 +1,6 @@
 (ns jasentaa.parser.basic
   (:require
-    [jasentaa.monad :as m :refer [>>=]]))
+   [jasentaa.monad :as m :refer [>>=]]))
 
 (defn any [input]
   (if (empty? input)
@@ -11,7 +11,7 @@
   "Satisfies a given predicate"
   [pred]
   (>>= any (fn [v]
-         (if (pred (:char v))
+             (if (pred (:char v))
                (m/return v)
                m/failure))))
 

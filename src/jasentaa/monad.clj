@@ -13,9 +13,9 @@
 (defn >>= [m f]
   (fn [input]
     (->>
-      m
-      (bind input)
-      (mapcat (fn [[v tail]] (bind tail (f v)))))))
+     m
+     (bind input)
+     (mapcat (fn [[v tail]] (bind tail (f v)))))))
 
 (defn- merge-bind [body bind]
   (if (and (not= clojure.lang.Symbol (type bind))

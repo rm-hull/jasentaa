@@ -1,8 +1,8 @@
 (ns jasentaa.collections-test
   (:require
-    [clojure.test :refer :all]
-    [jasentaa.collections :refer [join]]
-    [jasentaa.position :refer [augment-location]]))
+   [clojure.test :refer :all]
+   [jasentaa.collections :refer [join]]
+   [jasentaa.position :refer [augment-location]]))
 
 (deftest check-join-on-lists
   (is (= [1 2] (join 1 2)))

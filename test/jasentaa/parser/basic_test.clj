@@ -1,10 +1,10 @@
 (ns jasentaa.parser.basic-test
   (:require
-    [clojure.test :refer :all]
-    [jasentaa.test-helpers :refer :all]
-    [jasentaa.monad :as m]
-    [jasentaa.position :refer :all]
-    [jasentaa.parser.basic :refer :all]))
+   [clojure.test :refer :all]
+   [jasentaa.test-helpers :refer :all]
+   [jasentaa.monad :as m]
+   [jasentaa.position :refer :all]
+   [jasentaa.parser.basic :refer :all]))
 
 (deftest check-any
   (is (= [[\a "pple"]] (test-harness any "apple")))
