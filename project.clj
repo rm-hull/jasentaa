@@ -4,12 +4,18 @@
   :license {
     :name "The MIT License (MIT)"
     :url "http://opensource.org/licenses/MIT"}
-  :scm {:url "git@github.com:rm-hull/jasentaa.git"}
+  :scm {:url "https://github.com/rm-hull/jasentaa.git"}
   :source-paths ["src"]
   :jar-exclusions [#"(?:^|/).git"]
   :codox {
     :source-paths ["src"]
     :output-path "doc/api"
+    :doc-files [
+      "doc/worked-example-1.md"
+      "doc/worked-example-2.md"
+      "doc/further-examples.md"
+      "doc/references.md"
+      "LICENSE.md"]
     :source-uri "http://github.com/rm-hull/jasentaa/blob/master/{filepath}#L{line}" }
   :min-lein-version "2.6.1"
   :profiles {
