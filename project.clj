@@ -25,7 +25,7 @@
       :plugins [
         [lein-codox "0.10.3"]
         [lein-cloverage "1.0.9"]
-        [lein-cljfmt "0.5.6"]]
+        [lein-cljfmt "0.5.7"]]
       :dependencies [
         [org.clojure/clojure "1.8.0"]
         [google-analytics-codox-theme "0.1.0"]]}})
