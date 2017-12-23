@@ -1,4 +1,4 @@
-(defproject rm-hull/jasentaa "0.2.4-SNAPSHOT"
+(defproject rm-hull/jasentaa "0.2.4"
   :description "A parser-combinator library in Clojure"
   :url "https://github.com/rm-hull/jacentaa"
   :license {
@@ -24,8 +24,8 @@
       :global-vars {*warn-on-reflection* true}
       :plugins [
         [lein-codox "0.10.3"]
-        [lein-cloverage "1.0.9"]
+        [lein-cloverage "1.0.10"]
         [lein-cljfmt "0.5.7"]]
       :dependencies [
-        [org.clojure/clojure "1.8.0"]
+        [org.clojure/clojure "1.9.0"]
         [google-analytics-codox-theme "0.1.0"]]}})
