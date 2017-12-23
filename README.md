@@ -26,7 +26,7 @@ There is a version hosted at [Clojars](https://clojars.org/rm-hull/infix).
 For leiningen include a dependency:
 
 ```clojure
-[rm-hull/jasentaa "0.2.3"]
+[rm-hull/jasentaa "0.2.4"]
 ```
 
 For maven-based projects, add the following to your `pom.xml`:
