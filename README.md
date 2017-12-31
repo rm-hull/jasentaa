@@ -325,7 +325,7 @@ resulting in -9. Clearly, in both cases, multiplcation binds before addition.
 ; i.e. (- 1 (+ 4 (* 2 3)))
 ```
 
-_I can't immediately think of a scenarion where `chain-right` would be used
+_I can't immediately think of a scenario where `chain-right` would be used
 over `chain-left` - postfix notation perhaps? - but other than that..._
 
 This example is also encapsulated as another [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/worked_example_2.clj).
