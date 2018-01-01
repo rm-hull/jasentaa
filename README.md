@@ -4,7 +4,7 @@
 [![Dependencies Status](https://jarkeeper.com/rm-hull/jasentaa/status.svg)](https://jarkeeper.com/rm-hull/jasentaa)
 [![Downloads](https://jarkeeper.com/rm-hull/jasentaa/downloads.svg)](https://jarkeeper.com/rm-hull/jasentaa)
 [![Clojars Project](https://img.shields.io/clojars/v/rm-hull/jasentaa.svg)](https://clojars.org/rm-hull/jasentaa)
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg?maxAge=2592000)]()
+[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg?maxAge=2592000)]()
 
 A parser-combinator library in Clojure.
 
@@ -363,7 +363,7 @@ Substantial portions based on:
 
 ### The MIT License (MIT)
 
-Copyright (c) 2016 Richard Hull
+Copyright (c) 2016-18 Richard Hull
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
