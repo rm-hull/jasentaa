@@ -1,8 +1,10 @@
 (ns jasentaa.parser.combinators
   (:require
    [jasentaa.parser.basic :refer [match]]
-   [jasentaa.monad :as m :refer [>>= do*]]
-   [jasentaa.collections :refer [join]]))
+   [jasentaa.monad :as m :refer [>>=]]
+   [jasentaa.collections :refer [join]])
+  #?(:cljs (:require-macros
+            [jasentaa.monad :as m :refer [do*]])))
 
 (defn and-then
   "(ab)"
