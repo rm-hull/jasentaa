@@ -26,6 +26,6 @@
     `(>>= ~(last bind) (fn [~(first bind)] ~body))
     `(>>= ~bind (fn [~'_] ~body))))
 
-(defmacro do* [& forms]
-  (reduce merge-bind (last forms) (reverse (butlast forms))))
-
+#?(:clj
+   (defmacro do* [& forms]
+     (reduce merge-bind (last forms) (reverse (butlast forms)))))
