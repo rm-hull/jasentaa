@@ -38,4 +38,5 @@
               [{:id "test"
                 :source-paths ["src" "test"]
                 :compiler {:output-to "target/unit-test.js"
+                           :output-dir "target/out"
                            :optimizations :whitespace}}]})
