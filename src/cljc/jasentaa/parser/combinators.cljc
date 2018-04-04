@@ -1,7 +1,7 @@
 (ns jasentaa.parser.combinators
   (:require
    [jasentaa.parser.basic :refer [match]]
-   [jasentaa.monad :as m :refer [>>=]]
+   [jasentaa.monad :as m :refer [>>= do*]]
    [jasentaa.collections :refer [join]]))
 
 (defn and-then
