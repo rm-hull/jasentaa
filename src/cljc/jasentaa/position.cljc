@@ -1,9 +1,7 @@
 (ns jasentaa.position
   (:require
    [clojure.string :as s])
-  (:import
-   #?(:clj [java.text ParseException]
-      :cljs [])))
+  #?(:clj (:import [java.text ParseException])))
 
 (defrecord Location [char line col offset full-text])
 
