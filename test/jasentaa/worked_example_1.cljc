@@ -1,11 +1,12 @@
 (ns jasentaa.worked-example-1
   (:require
-   [clojure.test :refer :all]
-   [jasentaa.monad :as m]
+   #?(:clj  [clojure.test :refer :all]
+      :cljs [cljs.test :refer-macros [deftest is testing]])
+   [jasentaa.monad :as m :refer [do*]]
    [jasentaa.position :refer [strip-location]]
    [jasentaa.parser :refer [parse-all]]
-   [jasentaa.parser.basic :refer :all]
-   [jasentaa.parser.combinators :refer :all]))
+   [jasentaa.parser.basic :refer [from-re match]]
+   [jasentaa.parser.combinators :refer [token symb separated-by any-of plus optional]]))
 
 ; BNF Grammar, based at that described in: 'Getting Started with PyParsing'
 ; (http://shop.oreilly.com/product/9780596514235.do)
@@ -76,11 +77,13 @@
          (parse-all search-expr "not(steel or iron) and \"lime green\"")))
 
   (is (thrown-with-msg?
-       java.text.ParseException
+       #?(:clj java.text.ParseException
+          :cljs js/Error)
        #"Failed to parse text at line: 1, col: 7\nsteel iron\n      \^"
        (parse-all search-expr "steel iron")))
 
   (is (thrown-with-msg?
-       java.text.ParseException
+       #?(:clj java.text.ParseException
+          :cljs js/Error)
        #"Unable to parse text"
        (parse-all search-expr ""))))
