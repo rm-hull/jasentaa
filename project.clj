@@ -18,7 +18,7 @@
       "LICENSE.md"]
     :source-uri "http://github.com/rm-hull/jasentaa/blob/master/{filepath}#L{line}"
     :themes [:default [:google-analytics {:tracking-code "UA-39680853-9" }]]}
-  :min-lein-version "2.6.1"
+  :min-lein-version "2.8.1"
   :profiles {
              :dev {
                    :global-vars {*warn-on-reflection* true}

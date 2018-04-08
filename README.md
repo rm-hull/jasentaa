@@ -6,11 +6,11 @@
 [![Clojars Project](https://img.shields.io/clojars/v/rm-hull/jasentaa.svg)](https://clojars.org/rm-hull/jasentaa)
 [![Maintenance](https://img.shields.io/maintenance/yes/2018.svg?maxAge=2592000)]()
 
-A parser-combinator library in Clojure.
+A parser-combinator library for Clojure and ClojureScript.
 
 ### Pre-requisites
 
-You will need [Leiningen](https://github.com/technomancy/leiningen) 2.6.1 or above installed.
+You will need [Leiningen](https://github.com/technomancy/leiningen) 2.8.1 or above installed.
 
 ### Building
 
@@ -26,7 +26,7 @@ There is a version hosted at [Clojars](https://clojars.org/rm-hull/infix).
 For leiningen include a dependency:
 
 ```clojure
-[rm-hull/jasentaa "0.2.4"]
+[rm-hull/jasentaa "0.2.5"]
 ```
 
 For maven-based projects, add the following to your `pom.xml`:
