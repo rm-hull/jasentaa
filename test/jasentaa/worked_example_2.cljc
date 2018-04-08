@@ -1,11 +1,14 @@
 (ns jasentaa.worked-example-2
   (:require
-   [clojure.test :refer :all]
-   [jasentaa.monad :as m]
-   [jasentaa.parser :as p]
+   #?(:clj  [clojure.test :refer :all]
+      :cljs [cljs.test :refer-macros [deftest is testing]])
+   [jasentaa.monad :as m :refer [do*]]
    [jasentaa.position :refer [strip-location]]
-   [jasentaa.parser.basic :refer :all]
-   [jasentaa.parser.combinators :refer :all]))
+   [jasentaa.parser :as p]
+   [jasentaa.parser.basic :refer [sat #?(:clj fwd)]]
+   [jasentaa.parser.combinators :refer [token symb optional chain-left chain-right choice]])
+  #?(:cljs (:require-macros
+            [jasentaa.parser.basic :refer [fwd]])))
 
 ; BNF Grammar, based at that described in: 'FUNCTIONAL PEARLS: Monadic Parsing in Haskell'
 ; (http://www.cs.uwyo.edu/~jlc/courses/3015/parser_pearl.pdf)
@@ -20,8 +23,8 @@
 
 (declare expr)
 
-(defn- digit? [^Character c]
-  (Character/isDigit c))
+(defn- digit? [c]
+  (re-find #"[0-9]" (str c)))
 
 (def digit
   (m/do*

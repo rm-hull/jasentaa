@@ -1,6 +1,7 @@
 (ns jasentaa.collections-test
   (:require
-   [clojure.test :refer :all]
+   #?(:clj  [clojure.test :refer :all]
+      :cljs [cljs.test :refer-macros [deftest is testing]])
    [jasentaa.collections :refer [join]]
    [jasentaa.position :refer [augment-location]]))
 

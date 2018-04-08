@@ -3,7 +3,9 @@
   (:require
    [jasentaa.parser.combinators :refer [spaces]]
    [jasentaa.monad :as m :refer [>>=]]
-   [jasentaa.position :refer [augment-location parse-exception]]))
+   [jasentaa.position :refer [augment-location parse-exception]])
+  #?(:cljs (:require-macros
+            [jasentaa.monad :as m :refer [do*]])))
 
 (defn apply
   "Apply a parser, throwing away any leading space:"

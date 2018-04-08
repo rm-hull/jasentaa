@@ -1,8 +1,7 @@
 (ns jasentaa.position
   (:require
    [clojure.string :as s])
-  (:import
-   [java.text ParseException]))
+  #?(:clj (:import [java.text ParseException])))
 
 (defrecord Location [char line col offset full-text])
 
@@ -42,10 +41,15 @@
           padding (apply str (repeat (dec (:col location)) " "))]
       (str (subs input start end) \newline padding "^" \newline))))
 
+
+(defn parse-exception-interop [msg num]
+  #?(:clj (ParseException. msg num)
+     :cljs (js/Error. msg)))
+
 (defn parse-exception [location]
   (if (nil? location)
-    (ParseException. (str "Unable to parse text") 0)
-    (ParseException.
+    (parse-exception-interop (str "Unable to parse text") 0)
+    (parse-exception-interop
      (str
       "Failed to parse text at line: " (:line location) ", col: " (:col location)
       \newline (show-error location))
