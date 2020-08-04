@@ -4,7 +4,7 @@
 [![Dependencies Status](https://versions.deps.co/rm-hull/jasentaa/status.svg)](https://versions.deps.co/rm-hull/jasentaa)
 [![Downloads](https://versions.deps.co/rm-hull/jasentaa/downloads.svg)](https://versions.deps.co/rm-hull/jasentaa)
 [![Clojars Project](https://img.shields.io/clojars/v/rm-hull/jasentaa.svg)](https://clojars.org/rm-hull/jasentaa)
-[![Maintenance](https://img.shields.io/maintenance/yes/2019.svg?maxAge=2592000)]()
+[![Maintenance](https://img.shields.io/maintenance/yes/2020.svg?maxAge=2592000)]()
 
 A parser-combinator library for Clojure and ClojureScript.
 
