@@ -123,4 +123,4 @@ Testing the parsers for the given examples:
 ; => (:AND (:NOT (:OR "steel" "iron")) "lime green")
 ```
 
-This example is encapsulated as a [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/worked_example_1.clj).
+This example is encapsulated as a [test](https://github.com/rm-hull/jasentaa/blob/main/test/jasentaa/worked_example_1.clj).

@@ -16,7 +16,7 @@
       "doc/further-examples.md"
       "doc/references.md"
       "LICENSE.md"]
-    :source-uri "http://github.com/rm-hull/jasentaa/blob/master/{filepath}#L{line}"
+    :source-uri "http://github.com/rm-hull/jasentaa/blob/main/{filepath}#L{line}"
     :themes [:default [:google-analytics {:tracking-code "UA-39680853-9" }]]}
   :min-lein-version "2.8.1"
   :profiles {
@@ -27,7 +27,7 @@
                              [lein-cloverage "1.0.10"]
                              [lein-cljfmt "0.5.7"]]
                    :dependencies [
-                                  [org.clojure/clojure "1.9.0"]
+                                  [org.clojure/clojure "1.11.1"]
                                   [org.clojure/clojurescript "1.10.238"]
                                   [google-analytics-codox-theme "0.1.0"]]}}
   :aliases {"test" ["do" "clean," "test,"

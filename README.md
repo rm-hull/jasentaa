@@ -1,10 +1,10 @@
 # [Jäsentää](https://translate.google.co.uk/#fi/en/j%C3%A4sent%C3%A4%C3%A4)
-[![Build Status](https://travis-ci.org/rm-hull/jasentaa.svg?branch=master)](http://travis-ci.org/rm-hull/jasentaa)
-[![Coverage Status](https://coveralls.io/repos/rm-hull/jasentaa/badge.svg?branch=master)](https://coveralls.io/r/rm-hull/jasentaa?branch=master)
+[![Build Status](https://travis-ci.org/rm-hull/jasentaa.svg?branch=main)](http://travis-ci.org/rm-hull/jasentaa)
+[![Coverage Status](https://coveralls.io/repos/rm-hull/jasentaa/badge.svg?branch=main)](https://coveralls.io/r/rm-hull/jasentaa?branch=main)
 [![Dependencies Status](https://versions.deps.co/rm-hull/jasentaa/status.svg)](https://versions.deps.co/rm-hull/jasentaa)
 [![Downloads](https://versions.deps.co/rm-hull/jasentaa/downloads.svg)](https://versions.deps.co/rm-hull/jasentaa)
 [![Clojars Project](https://img.shields.io/clojars/v/rm-hull/jasentaa.svg)](https://clojars.org/rm-hull/jasentaa)
-[![Maintenance](https://img.shields.io/maintenance/yes/2021.svg?maxAge=2592000)]()
+[![Maintenance](https://img.shields.io/maintenance/yes/2023.svg?maxAge=2592000)]()
 
 A parser-combinator library for Clojure and ClojureScript.
 
@@ -50,7 +50,7 @@ became exhausted, then `parse-all` would return `nil` and no indication
 of where the parser failed.
 
 As of **0.2.0**, althought the parser still accepts a stream of characters, it
-reprocesses them into a stream of [Location](https://github.com/rm-hull/jasentaa/blob/master/src/jasentaa/position.clj#L3)'s.
+reprocesses them into a stream of [Location](https://github.com/rm-hull/jasentaa/blob/main/src/jasentaa/position.clj#L3)'s.
 If the input cannot be fully parsed, `parse-all` now throws a [ParseException](https://docs.oracle.com/javase/8/docs/api/java/text/ParseException.html#ParseException-java.lang.String-int-),
 where the message gives a human-readable location of where the parse failed,
 and `ParseException#getErrorOffset` gives the zero-indexed offset to the start
@@ -203,7 +203,7 @@ Testing the parsers for the given examples:
 ; => (:AND (:NOT (:OR "steel" "iron")) "lime green")
 ```
 
-This example is encapsulated as a [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/worked_example_1.clj).
+This example is encapsulated as a [test](https://github.com/rm-hull/jasentaa/blob/main/test/jasentaa/worked_example_1.clj).
 
 ## Worked Example #2
 
@@ -328,7 +328,7 @@ resulting in -9. Clearly, in both cases, multiplcation binds before addition.
 _I can't immediately think of a scenario where `chain-right` would be used
 over `chain-left` - postfix notation perhaps? - but other than that..._
 
-This example is also encapsulated as another [test](https://github.com/rm-hull/jasentaa/blob/master/test/jasentaa/worked_example_2.clj).
+This example is also encapsulated as another [test](https://github.com/rm-hull/jasentaa/blob/main/test/jasentaa/worked_example_2.clj).
 
 ## Further examples & implementations
 
