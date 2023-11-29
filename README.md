@@ -1,5 +1,6 @@
 # [Jäsentää](https://translate.google.co.uk/#fi/en/j%C3%A4sent%C3%A4%C3%A4)
-[![Build Status](https://github.com/rm-hull/jasentaa/actions/workflows/clojure.yml)](https://github.com/rm-hull/jasentaa/actions/workflows/clojure.yml/badge.svg)
+
+[![Build Status](https://github.com/rm-hull/jasentaa/actions/workflows/clojure.yml/badge.svg)](https://github.com/rm-hull/jasentaa/actions/workflows/clojure.yml)
 [![Coverage Status](https://coveralls.io/repos/rm-hull/jasentaa/badge.svg?branch=main)](https://coveralls.io/r/rm-hull/jasentaa?branch=main)
 [![Dependencies Status](https://versions.deps.co/rm-hull/jasentaa/status.svg)](https://versions.deps.co/rm-hull/jasentaa)
 [![Downloads](https://versions.deps.co/rm-hull/jasentaa/downloads.svg)](https://versions.deps.co/rm-hull/jasentaa)
