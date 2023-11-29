@@ -22,13 +22,13 @@
   :profiles {
              :dev {
                    :global-vars {*warn-on-reflection* true}
-                   :plugins [[lein-doo "0.1.10"]
-                             [lein-codox "0.10.3"]
-                             [lein-cloverage "1.0.10"]
-                             [lein-cljfmt "0.5.7"]]
+                   :plugins [[lein-doo "0.1.11"]
+                             [lein-codox "0.10.8"]
+                             [lein-cloverage "1.2.4"]
+                             [lein-cljfmt "0.9.2"]]
                    :dependencies [
                                   [org.clojure/clojure "1.11.1"]
-                                  [org.clojure/clojurescript "1.10.238"]
+                                  [org.clojure/clojurescript "1.11.60"]
                                   [google-analytics-codox-theme "0.1.0"]]}}
   :aliases {"test" ["do" "clean," "test,"
                     "doo" "rhino" "test" "once"]}

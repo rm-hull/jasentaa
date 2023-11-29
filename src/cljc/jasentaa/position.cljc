@@ -41,7 +41,6 @@
           padding (apply str (repeat (dec (:col location)) " "))]
       (str (subs input start end) \newline padding "^" \newline))))
 
-
 (defn parse-exception-interop [msg num]
   #?(:clj (ParseException. msg num)
      :cljs (js/Error. msg)))
