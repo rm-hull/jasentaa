@@ -2,10 +2,9 @@
 
 [![Build Status](https://github.com/rm-hull/jasentaa/actions/workflows/clojure.yml/badge.svg)](https://github.com/rm-hull/jasentaa/actions/workflows/clojure.yml)
 [![Coverage Status](https://coveralls.io/repos/rm-hull/jasentaa/badge.svg?branch=main)](https://coveralls.io/r/rm-hull/jasentaa?branch=main)
-[![Dependencies Status](https://versions.deps.co/rm-hull/jasentaa/status.svg)](https://versions.deps.co/rm-hull/jasentaa)
 [![Downloads](https://versions.deps.co/rm-hull/jasentaa/downloads.svg)](https://versions.deps.co/rm-hull/jasentaa)
 [![Clojars Project](https://img.shields.io/clojars/v/rm-hull/jasentaa.svg)](https://clojars.org/rm-hull/jasentaa)
-[![Maintenance](https://img.shields.io/maintenance/yes/2023.svg?maxAge=2592000)]()
+[![Maintenance](https://img.shields.io/maintenance/yes/2025.svg?maxAge=2592000)]()
 
 A parser-combinator library for Clojure and ClojureScript.
 
